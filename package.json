@@ -33,7 +33,10 @@
     },
     "dependencies": {
         "@sveltejs/adapter-node": "^1.0.0-next.101",
+        "heatmap.js": "^2.0.5",
         "leaflet": "^1.9.3",
+        "leaflet-heatmap": "^1.0.0",
+        "leaflet-webgl-heatmap": "^0.2.7",
         "pocketbase": "^0.8.2",
         "sass": "^1.56.1",
         "svelte-recaptcha-v2": "^0.0.2",

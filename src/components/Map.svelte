@@ -1,6 +1,7 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
+    import { create_map } from '$/components/map';
 
     let mapElement;
     let map;
@@ -10,25 +11,7 @@
         const leaflet = await import('leaflet');
 
         let center = [48.72, 21.26];
-
-        map = leaflet.map(mapElement).setView(center, 13);
-
-        leaflet
-            .tileLayer(
-                'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-                {
-                    attribution:
-                        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                    subdomains: 'abcd',
-                    maxZoom: 20,
-                }
-            )
-            .addTo(map);
-
-        // leaflet.marker(center).addTo(map)
-        //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        //     .openPopup();
-        
+        let map = create_map(leaflet, mapElement, center);
 
         var point = leaflet.popup().setContent('I am a standalone popup.');
         map.on('click', e => {
