@@ -49,7 +49,16 @@
             }
             point = L.marker(e.latlng).addTo(map);
             // point.setContent(first);
-            placeData = { name1: first, name2: second };
+            placeData = {
+                name1: first,
+                name2: second,
+                rating: 10,
+                properties: [
+                    { key: 'Umiestnenie', value: 'Výborné', color: 'green' },
+                    { key: 'Cena', value: 'Vpohode', color: 'yellow' },
+                    { key: 'Detské ihriská', value: 'Žiadne', color: 'red' },
+                ],
+            };
         });
     });
 
@@ -66,10 +75,23 @@
         {#if placeData}
             <h1>{placeData.name1}</h1>
             <h3>{placeData.name2}</h3>
-            <p>Dobrý deň</p>
+            <p>Celkové hodnotenie: {placeData.rating} bodov</p>
+            {#each placeData.properties as prop}
+                <div class="property {prop.color}">
+                    <div class="prop_key">
+                        {prop.key}
+                    </div>
+                    <div class="prop_value">
+                        {prop.value}
+                    </div>
+                </div>
+            {/each}
         {:else}
-            <h1> Vyberte miesto </h1>
-            <p> Kliknutím na mapu vyberiete miesto, o ktorom sa niečo chcete dozvedieť. </p>
+            <h1>Vyberte miesto</h1>
+            <p>
+                Kliknutím na mapu vyberiete miesto, o ktorom sa niečo chcete
+                dozvedieť.
+            </p>
         {/if}
     </div>
     <div bind:this={mapElement} />
@@ -91,7 +113,7 @@
     @import '../Settings.scss';
     @import 'leaflet/dist/leaflet.css';
 
-    .map div:not(.sidebar),
+    .map div:not(.sidebar, .sidebar *),
     .map {
         height: 100%;
     }
@@ -115,5 +137,37 @@
     .sidebar h3 {
         line-height: 1em;
         padding: 0 0 0.5em 0;
+    }
+
+    .property {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 1em 0.5em 1em 0.5em;
+        border-radius: 1em;
+    }
+
+    .red {
+        background-color: hsl(0, 80%, 90%);
+    }
+
+    .yellow {
+        background-color: hsl(60, 80%, 90%);
+    }
+
+    .green {
+        background-color: hsl(120, 80%, 90%);
+    }
+
+    .prop_key {
+        width: 50%;
+        text-align: center;
+        padding: 0.75em 0.5em 0.75em 0.5em;
+    }
+
+    .prop_value {
+        width: 50%;
+        text-align: center;
+        padding: 0.75em 0.5em 0.75em 0.5em;
     }
 </style>
