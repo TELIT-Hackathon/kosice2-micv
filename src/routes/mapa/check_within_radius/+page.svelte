@@ -1,14 +1,6 @@
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte';
     onMount(async () => {
-        const settings: RequestInit = {
-            method: 'POST',
-            headers: {
-                Accept: 'aplication/json',
-                'Content-Type': 'aplication/json',
-            },
-            // body: JSON.stringify({ lat: 0, lng: 0 }),
-        };
         const response = await fetch('/mapa/check_within_radius', {
             method: 'POST',
             headers: {
