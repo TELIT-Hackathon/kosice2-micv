@@ -1,15 +1,21 @@
 <script lang="ts">
+    import Burger from './Burger.svelte';
     import NavLink from './NavLink.svelte';
+
     export let links: { name: string; href: string }[];
 </script>
 
 <header>
-    <img src="/kosice_logo.png" alt="logo" />
-    <div class="header-title"><b>Košické bývanie</b></div>
-    <div class="header-links">
-        {#each links as link}
-            <NavLink href={link.href}>{link.name}</NavLink>
-        {/each}
+    <div class="header-container">
+        <img src="/kosice_logo.png" alt="logo" />
+        <div class="header-links">
+            {#each links as link}
+                <NavLink href={link.href}>{link.name}</NavLink>
+            {/each}
+        </div>
+        <div class="burger-container">
+            <Burger {links} />
+        </div>
     </div>
 </header>
 
@@ -17,19 +23,41 @@
     @import '../Settings.scss';
 
     header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: $clr-accent1;
         color: $clr-light;
-        gap: 1em;
         height: min(6vh, 60px);
         padding: min(1.8vh, 12px);
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+
+        @media (min-width: $mobile-width) {
+            justify-content: center;
+        }
+
+        align-items: center;
+        gap: 1em;
+
+        height: 100%;
+        width: 100%;
+    }
+
+    .burger-container {
+        display: none;
     }
 
     @media (max-width: $mobile-width) {
         .header-links {
             display: none;
+        }
+
+        .burger-container {
+            display: block;
         }
     }
 

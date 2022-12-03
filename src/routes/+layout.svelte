@@ -16,7 +16,6 @@
 
 <div id="app">
     <Header {links} />
-    <Burger {links} />
 
     <main>
         <div class="page-container">
