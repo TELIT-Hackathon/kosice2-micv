@@ -4,7 +4,7 @@
 </script>
 
 <header>
-    <div class="header-title">&lt;ADVENT/&gt;</div>
+    <div class="header-title">Hackathon</div>
     <div class="header-links">
         {#each links as link}
             <NavLink href={link.href}>{link.name}</NavLink>
