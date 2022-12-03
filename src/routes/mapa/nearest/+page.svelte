@@ -9,14 +9,14 @@
             },
             // body: JSON.stringify({ lat: 0, lng: 0 }),
         };
-        const response = await fetch('/mapa/distance', {
+        const response = await fetch('/mapa/nearest', {
             method: 'POST',
             headers: {
                 Accept: 'aplication/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                lat: 0, lng: 0 
+                lat: 48.1545, lng: 21.1589 
             })
         });
         const data = await response.json();
