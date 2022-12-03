@@ -30,7 +30,11 @@
     <div class="burger-container">
         <div class="burger-links">
             {#each links as link}
-                <NavLink on:click={toggleMenu} className="burger-link" href={link.href}>{link.name}</NavLink>
+                <NavLink
+                    on:click={toggleMenu}
+                    className="burger-link"
+                    href={link.href}>{link.name}</NavLink
+                >
             {/each}
         </div>
     </div>
@@ -73,7 +77,7 @@
     }
 
     .burger-overlay {
-        width: 100vw;
+        // width: 100vw;
         height: 100vh;
         position: absolute;
         z-index: 11000;
@@ -82,11 +86,12 @@
         background-color: #00000050;
         transition: opacity 0.3s;
 
-        transform: translateX(100%);
+        // transform: translateX(100%);
 
         &.active {
             opacity: 1;
-            transform: translateX(0);
+            width: 100vw;
+            // transform: translateX(0);
         }
     }
 
@@ -97,7 +102,7 @@
         position: absolute;
         left: calc(-1 * $width);
         z-index: 12000;
-        background-color: $clr-dark-darker;
+        background-color: $clr-accent1;
 
         transition: 0.3s ease;
 
@@ -118,11 +123,13 @@
                     font-size: 2em;
                     width: fit-content;
 
+                    color: $clr-light;
+
                     &.active {
                         padding: 0.02em 0.3em;
                         border-radius: 0.1em;
-                        color: $clr-light;
-                        background-color: $clr-accent1;
+                        color: $clr-accent1;
+                        background-color: $clr-light;
                     }
                 }
             }

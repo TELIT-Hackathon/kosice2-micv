@@ -10,8 +10,7 @@
     
     let links = [
         { name: 'domov', href: '/' },
-        { name: 'login', href: '/form/login' },
-        { name: 'registracia', href: '/form/registracia' },
+        { name: 'error', href: '/error' },
     ]
 </script>
 
@@ -31,15 +30,13 @@
 
     :global {
         a {
-            color: $clr-accent1;
+            color: $clr-accent2;
             display: inline-block;
             transition: 0.2s ease;
             text-decoration: none;
 
-            &:visited,
-            &:hover,
-            &:active {
-                color: $clr-accent1;
+            &:visited, &:hover, &:active {
+                color: currentColor;
             }
 
             &:hover {
@@ -50,8 +47,8 @@
     }
 
     :root {
-        background-color: $clr-dark;
-        color: $clr-light;
+        background-color: $clr-light;
+        color: $clr-dark;
         font-family: $ff-primary;
     }
 

@@ -4,7 +4,8 @@
 </script>
 
 <header>
-    <div class="header-title">Hackathon</div>
+    <img src="/kosice_logo.png" alt="logo" />
+    <div class="header-title"><b>Košické bývanie</b></div>
     <div class="header-links">
         {#each links as link}
             <NavLink href={link.href}>{link.name}</NavLink>
@@ -19,9 +20,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $clr-dark-darker;
+        background-color: $clr-accent1;
+        color: $clr-light;
         gap: 1em;
         height: min(6vh, 60px);
+        padding: min(1.8vh, 12px);
     }
 
     @media (max-width: $mobile-width) {
@@ -35,10 +38,11 @@
             padding: 0.03em 0.25em;
             border-radius: 2px;
             margin: 0.2em;
+            color: $clr-light;
 
             &.active {
-                color: $clr-light;
-                background-color: $clr-accent1;
+                color: $clr-accent1;
+                background-color: $clr-light;
             }
         }
     }
