@@ -8,9 +8,9 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                radius: 1000,
-                center: {lat: 48.17, lng: 21.17}, 
-                data: [{"name": "aa", "coords": {lat: 48.17, lng: 21.17}},{"name": "bb", "coords": {lat: 48.18, lng: 21.18}}]
+                radius: 800,
+                center: {lat: 48.705878, lng: 21.264437}, 
+                data: "zakladne_skoly"
             })
         });
         const data = await response.json();
