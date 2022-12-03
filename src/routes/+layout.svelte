@@ -6,12 +6,12 @@
     import Burger from '$/components/Burger.svelte';
 
     export const prerender = true;
-	export let data: LayoutData;
-    
+    export let data: LayoutData;
+
     let links = [
         { name: 'domov', href: '/' },
         { name: 'mapa', href: '/mapa' },
-    ]
+    ];
 </script>
 
 <div id="app">
@@ -34,7 +34,9 @@
             transition: 0.2s ease;
             text-decoration: none;
 
-            &:visited, &:hover, &:active {
+            &:visited,
+            &:hover,
+            &:active {
                 color: currentColor;
             }
 

@@ -5,13 +5,13 @@
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 radius: 800,
-                center: {lat: 48.705878, lng: 21.264437}, 
-                data: "zakladne_skoly"
-            })
+                center: { lat: 48.705878, lng: 21.264437 },
+                data: 'zakladne_skoly',
+            }),
         });
         const data = await response.json();
         console.log(data);

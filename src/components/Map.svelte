@@ -41,9 +41,9 @@
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({lat: lat, lon: lon}),
+                body: JSON.stringify({ lat: lat, lon: lon, time: 600 }),
             });
             const data = await response.json();
             if (izoch) {
