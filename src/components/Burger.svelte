@@ -1,40 +1,39 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { Hamburger } from 'svelte-hamburgers';
+
     import NavLink from './NavLink.svelte';
+
     export let links: { name: string; href: string }[];
-
-    let menuIsOpen = false;
-
+    let open: boolean | undefined = false;
+    
     function toggleMenu() {
-        menuIsOpen = !menuIsOpen;
+        open = !open;
     }
 
     onMount(() => {
         window.addEventListener('keydown', () => {
-            menuIsOpen = false;
+            open = false;
         });
     });
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="burger-button" on:click={toggleMenu}>
-    <span />
-    <span />
-    <span />
-</div>
+<Hamburger bind:open type="squeeze" --color="white" --padding="0" />
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="burger-overlay" class:active={menuIsOpen} on:click={toggleMenu} />
+<div class="burger-overlay" class:active={open} on:click={toggleMenu} />
 
-<div class="burger-menu" class:open={menuIsOpen}>
-    <div class="burger-container">
+<div class="burger-menu" class:open>
+    <div class="burger-menu-container">
         <div class="burger-links">
             {#each links as link}
                 <NavLink
                     on:click={toggleMenu}
                     className="burger-link"
-                    href={link.href}>{link.name}</NavLink
+                    href={link.href}
                 >
+                    {link.name}
+                </NavLink>
             {/each}
         </div>
     </div>
@@ -43,55 +42,27 @@
 <style lang="scss">
     @import '../Settings.scss';
 
-    .burger-button {
-        position: absolute;
+    $transition-time: 0.3s;
+
+    .burger-overlay {
+        width: 0;
+        height: 100vh;
 
         top: 0;
         left: 0;
-        z-index: 10000;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        width: 50px;
-        height: 50px;
-
-        transition: 0.1s;
-
-        @media (min-width: $mobile-width) {
-            display: none;
-        }
-
-        &:hover {
-            cursor: pointer;
-            opacity: 0.7;
-        }
-
-        span {
-            width: 100%;
-            height: 20%;
-            background-color: $clr-light;
-            border-radius: 9%;
-        }
-    }
-
-    .burger-overlay {
-        // width: 100vw;
-        height: 100vh;
         position: absolute;
         z-index: 11000;
 
-        opacity: 0;
         background-color: #00000050;
-        transition: opacity 0.3s;
+        opacity: 0;
 
-        // transform: translateX(100%);
+        transition: opacity $transition-time, width 0s $transition-time;
 
         &.active {
+            transition: opacity $transition-time, width 0s 0s;
             opacity: 1;
             width: 100vw;
-            // transform: translateX(0);
         }
     }
 
@@ -100,11 +71,13 @@
         width: $width;
         height: 100vh;
         position: absolute;
+
+        top: 0;
         left: calc(-1 * $width);
         z-index: 12000;
         background-color: $clr-accent1;
 
-        transition: 0.3s ease;
+        transition: $transition-time ease;
 
         &.open {
             transform: translateX($width);
@@ -112,7 +85,7 @@
     }
 
     :global {
-        .burger-container {
+        .burger-menu-container {
             padding: 3vh 5vw;
 
             .burger-links {
