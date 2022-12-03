@@ -1,5 +1,5 @@
 <script lang="ts">
-    import HeatMap from '$/components/HeatMap.svelte';
+    import Map from '$/components/Map.svelte';
 </script>
 
-<HeatMap />
+<Map />

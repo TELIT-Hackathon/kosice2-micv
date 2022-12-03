@@ -25,11 +25,12 @@
     header {
         background-color: $clr-accent1;
         color: $clr-light;
-        height: min(7vh, 70px);
+        height: $header-height;
         padding: min(1.0vh, 10px);
 
         display: flex;
         justify-content: center;
+        z-index: 20000;
     }
 
     .header-container {

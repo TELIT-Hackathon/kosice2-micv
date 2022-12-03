@@ -5,18 +5,51 @@
 
     let mapElement;
     let map;
+    let placeData = null;
 
     onMount(async () => {
         if (!browser) return;
-        const leaflet = await import('leaflet');
+        //const leaflet = await import('leaflet');
+        // const hm = await import('leaflet-heatmap');
+
+        const response = await fetch('/mapa/nehody');
+        const data = await response.json();
+
+        console.log(data);
 
         let center = [48.72, 21.26];
-        let map = create_map(leaflet, mapElement, center);
+        let map = create_map(L, mapElement, center);
+        const cfg = {
+            radius: 10,
+            maxOpacity: 0.8,
+            scaleRadius: false,
+            useLocalExtrema: true,
+            latField: 'lat',
+            lngField: 'lng',
+            valueField: 'count',
+        };
 
-        var point = leaflet.popup().setContent('I am a standalone popup.');
-        map.on('click', e => {
-            point.setLatLng(e.latlng);
-            point.openOn(map);
+        var hl = new HeatmapOverlay(cfg);
+        hl.addTo(map);
+        hl.setData(data);
+
+        var point;
+        map.on('click', async e => {
+            let data = await (
+                await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${e.latlng.lat}&lon=${e.latlng.lng}&accept-language=sk`
+                )
+            ).json();
+
+            let name = data.display_name;
+            let [first, ...second] = name.split('-');
+            second = second.join('-');
+            if (point) {
+                point.remove();
+            }
+            point = L.marker(e.latlng).addTo(map);
+            // point.setContent(first);
+            placeData = { name1: first, name2: second };
         });
     });
 
@@ -28,13 +61,59 @@
     });
 </script>
 
-<main>
+<div class="map">
+    <div class="sidebar">
+        {#if placeData}
+            <h1>{placeData.name1}</h1>
+            <h3>{placeData.name2}</h3>
+            <p>Dobrý deň</p>
+        {:else}
+            <h1> Vyberte miesto </h1>
+            <p> Kliknutím na mapu vyberiete miesto, o ktorom sa niečo chcete dozvedieť. </p>
+        {/if}
+    </div>
     <div bind:this={mapElement} />
-</main>
+</div>
 
-<style>
+<svelte:head>
+    <script
+        src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+        crossorigin=""
+    ></script>
+    <script src="/heatmap.js">
+    </script>
+    <script src="/leaflet-heatmap.js">
+    </script>
+</svelte:head>
+
+<style lang="scss">
+    @import '../Settings.scss';
     @import 'leaflet/dist/leaflet.css';
-    main div {
-        height: 800px;
+
+    .map div:not(.sidebar),
+    .map {
+        height: 100%;
+    }
+
+    .sidebar {
+        position: absolute;
+        width: min(100vw, 20em);
+        height: calc(100% - $header-height);
+        top: $header-height;
+        right: 0;
+        background-color: white;
+        z-index: 10000;
+        box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
+        padding: 1em;
+    }
+
+    .sidebar h1 {
+        line-height: 1em;
+        padding: 0 0 1em 0;
+    }
+    .sidebar h3 {
+        line-height: 1em;
+        padding: 0 0 0.5em 0;
     }
 </style>

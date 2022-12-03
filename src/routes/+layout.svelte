@@ -18,9 +18,9 @@
     <Header {links} />
 
     <main>
-        <!-- <div class="page-container"> -->
+        <div class="page-container">
             <slot />
-        <!-- </div> -->
+        </div>
     </main>
 </div>
 
@@ -67,9 +67,7 @@
         justify-content: center;
     }
 
-    // .page-container {
-    //     max-width: 800px;
-    //     width: 100%;
-    //     margin: 3vh min(4vw, 1em);
-    // }
+    .page-container {
+        width: 100%;
+    }
 </style>
