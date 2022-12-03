@@ -5,7 +5,7 @@
 <h1>Main page</h1>
 
 <style lang="scss">
-    @import '../Settings.scss';
+    @import '../../Settings.scss';
 </style>
 
 <Map />

@@ -10,7 +10,7 @@
     
     let links = [
         { name: 'domov', href: '/' },
-        { name: 'error', href: '/error' },
+        { name: 'mapa', href: '/mapa' },
     ]
 </script>
 
