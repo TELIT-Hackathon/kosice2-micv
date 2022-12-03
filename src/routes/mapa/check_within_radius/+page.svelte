@@ -4,7 +4,7 @@
         const response = await fetch('/mapa/check_within_radius', {
             method: 'POST',
             headers: {
-                Accept: 'aplication/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

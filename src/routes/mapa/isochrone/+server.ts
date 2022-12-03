@@ -34,8 +34,8 @@ export const POST: RequestHandler = async ({ request }) => {
         })
     });
 
-    const json = await result.json();
-    const data: { lat: number, lng: number }[] = json.results[0].shapes[0].shell;
+    const jason = await result.json();
+    const data: { lat: number, lng: number }[] = jason.results[0].shapes[0].shell;
 
     return json({
         outline: data.map((value) => {

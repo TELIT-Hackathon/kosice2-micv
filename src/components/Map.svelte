@@ -2,6 +2,7 @@
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
     import { create_map } from '$/components/map';
+    import InfoPane from '$/components/InfoPane.svelte';
 
     let mapElement;
     let map;
@@ -11,27 +12,46 @@
         if (!browser) return;
         //const leaflet = await import('leaflet');
         // const hm = await import('leaflet-heatmap');
+        // const response = await fetch('/mapa/nehody');
+        // const data = await response.json();
+        // console.log(data);
 
-        const response = await fetch('/mapa/nehody');
-        const data = await response.json();
-
-        console.log(data);
+        // const response = await fetch('/mapa/veci');
+        // const features = await response.json();
 
         let center = [48.72, 21.26];
         let map = create_map(L, mapElement, center);
-        const cfg = {
-            radius: 10,
-            maxOpacity: 0.8,
-            scaleRadius: false,
-            useLocalExtrema: true,
-            latField: 'lat',
-            lngField: 'lng',
-            valueField: 'count',
-        };
+        // const cfg = {
+        //     radius: 10,
+        //     maxOpacity: 0.8,
+        //     scaleRadius: false,
+        //     useLocalExtrema: true,
+        //     latField: 'lat',
+        //     lngField: 'lng',
+        //     valueField: 'count',
+        // };
 
-        var hl = new HeatmapOverlay(cfg);
-        hl.addTo(map);
-        hl.setData(data);
+        // var hl = new HeatmapOverlay(cfg);
+        // hl.addTo(map);
+        // hl.setData(data);
+
+        let izoch;
+        async function update_isoch(lat, lon) {
+            const response = await fetch('/mapa/isochrone', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({lat: lat, lon: lon}),
+            });
+            const data = await response.json();
+            if (izoch) {
+                izoch.remove();
+            }
+            console.log(data);
+            izoch = L.polygon(data.outline).addTo(map);
+        }
 
         var point;
         map.on('click', async e => {
@@ -48,7 +68,6 @@
                 point.remove();
             }
             point = L.marker(e.latlng).addTo(map);
-            // point.setContent(first);
             placeData = {
                 name1: first,
                 name2: second,
@@ -59,6 +78,7 @@
                     { key: 'Detské ihriská', value: 'Žiadne', color: 'red' },
                 ],
             };
+            update_isoch(e.latlng.lat, e.latlng.lng);
         });
     });
 
@@ -72,27 +92,7 @@
 
 <div class="map">
     <div class="sidebar">
-        {#if placeData}
-            <h1>{placeData.name1}</h1>
-            <h3>{placeData.name2}</h3>
-            <p>Celkové hodnotenie: {placeData.rating} bodov</p>
-            {#each placeData.properties as prop}
-                <div class="property {prop.color}">
-                    <div class="prop_key">
-                        {prop.key}
-                    </div>
-                    <div class="prop_value">
-                        {prop.value}
-                    </div>
-                </div>
-            {/each}
-        {:else}
-            <h1>Vyberte miesto</h1>
-            <p>
-                Kliknutím na mapu vyberiete miesto, o ktorom sa niečo chcete
-                dozvedieť.
-            </p>
-        {/if}
+        <InfoPane data={placeData} />
     </div>
     <div bind:this={mapElement} />
 </div>
@@ -127,47 +127,15 @@
         background-color: white;
         z-index: 10000;
         box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
-        padding: 1em;
+        padding: 0;
     }
 
-    .sidebar h1 {
-        line-height: 1em;
-        padding: 0 0 1em 0;
-    }
-    .sidebar h3 {
-        line-height: 1em;
-        padding: 0 0 0.5em 0;
-    }
-
-    .property {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin: 1em 0.5em 1em 0.5em;
-        border-radius: 1em;
-    }
-
-    .red {
-        background-color: hsl(0, 80%, 90%);
-    }
-
-    .yellow {
-        background-color: hsl(60, 80%, 90%);
-    }
-
-    .green {
-        background-color: hsl(120, 80%, 90%);
-    }
-
-    .prop_key {
-        width: 50%;
-        text-align: center;
-        padding: 0.75em 0.5em 0.75em 0.5em;
-    }
-
-    .prop_value {
-        width: 50%;
-        text-align: center;
-        padding: 0.75em 0.5em 0.75em 0.5em;
+    @media screen and (max-width: 600px) {
+        .sidebar {
+            top: calc($header-height + 100vh - 12em);
+            left: 0;
+            width: 100%;
+            border-radius: 1em;
+        }
     }
 </style>
