@@ -9,14 +9,16 @@
             },
             // body: JSON.stringify({ lat: 0, lng: 0 }),
         };
-        const response = await fetch('/mapa/nearest_node', {
+        const response = await fetch('/mapa/check_within_radius', {
             method: 'POST',
             headers: {
                 Accept: 'aplication/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                lat: 48.1545, lng: 21.1589 
+                radius: 1000,
+                center: {lat: 48.17, lng: 21.17}, 
+                data: [{"name": "aa", "coords": {lat: 48.17, lng: 21.17}},{"name": "bb", "coords": {lat: 48.18, lng: 21.18}}]
             })
         });
         const data = await response.json();
