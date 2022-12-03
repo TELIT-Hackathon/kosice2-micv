@@ -9,7 +9,7 @@
             },
             // body: JSON.stringify({ lat: 0, lng: 0 }),
         };
-        const response = await fetch('/mapa/nearest', {
+        const response = await fetch('/mapa/nearest_node', {
             method: 'POST',
             headers: {
                 Accept: 'aplication/json',
