@@ -18,7 +18,7 @@
     });
 </script>
 
-<Hamburger bind:open type="squeeze" --color="white" />
+<Hamburger bind:open type="squeeze" --color="white" --padding="0" />
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="burger-overlay" class:active={open} on:click={toggleMenu} />

@@ -25,8 +25,8 @@
     header {
         background-color: $clr-accent1;
         color: $clr-light;
-        height: min(6vh, 60px);
-        padding: min(1.8vh, 12px);
+        height: min(7vh, 70px);
+        padding: min(1.0vh, 10px);
 
         display: flex;
         justify-content: center;
