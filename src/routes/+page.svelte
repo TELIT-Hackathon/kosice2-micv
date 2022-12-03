@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Map from '$/components/map.svelte';
 </script>
 
 <h1>Main page</h1>
@@ -6,3 +7,5 @@
 <style lang="scss">
     @import '../Settings.scss';
 </style>
+
+<Map />
