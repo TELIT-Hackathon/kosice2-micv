@@ -29,20 +29,29 @@ for (let i = 0; i < byty.length; i++) {
                     transportation: {
                         type: 'driving'
                     },
-                    departure_time: '2022-10-01T09:00:00Z',
-                    travel_time: 500
+                    departure_time: '2022-12-03T09:00:00Z',
+                    travel_time: 600,
+                    no_holes: true,
+                    single_shape: true,
+                    level_of_detail: {
+                        scale_type: 'simple',
+                        level: 'medium',
+                    }
                 }
             ]
         })
     });
+    
+    console.log(result);
 
     const jason = await result.json();
-    const data: { lat: number, lng: number }[] = jason.results[0].shapes[0].shell;
-    
+    console.log(jason);
+    const data = jason.results[0].shapes[0].shell;
+
     const d = data.map((value) => {
         return [value.lat, value.lng];
     });
-    
+
     console.log(d);
 
     writeFileSync(`isochrone/${byty[i].id}.json`, JSON.stringify(d));

@@ -7,7 +7,7 @@
 
 <header>
     <div class="header-container">
-        <img src="/kosice_logo.png" alt="logo" />
+        <img src="/logo.svg" alt="logo" class="logo" />
         <div class="header-links">
             {#each links as link}
                 <NavLink href={link.href}>{link.name}</NavLink>
@@ -26,7 +26,7 @@
         background-color: $clr-accent1;
         color: $clr-light;
         height: $header-height;
-        padding: min(1.0vh, 10px);
+        padding: min(1vh, 10px);
 
         display: flex;
         justify-content: center;
@@ -48,6 +48,12 @@
 
         height: 100%;
         width: 100%;
+
+        .logo {
+            border-radius: 3px;
+            background-color: white;
+            padding: 5px;
+        }
     }
 
     .burger-container {
