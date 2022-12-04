@@ -45,9 +45,35 @@ function getSortedData(filePath: string, count: number, coords: { lat: number, l
     sortedDistances.sort((a, b) => { if (a.distance < b.distance) return -1; return 1; });
 
     const result = new Array(count);
-    for (let i = 0; i < count; i++) {
-        result[i] = featureData[sortedDistances[i].index];
+    let i = 0;
+    let y = 0;
+    while (i < count) {
+        let new_data = featureData[sortedDistances[i].index];
+        if (filePath == "zastavky") {
+            let same = false;
+            let j = 0;
+            while (result[j] != undefined && j < result.length){
+                if (new_data.properties["zastavka_nazov"] == result[j].properties["zastavka_nazov"])
+                {
+                    same = true;
+                    j++;
+                    break;
+                }
+                j++;
+            };
+            if (same) {
+                count++;
+                i++;
+            } else {
+                result[y] = new_data;
+                i++;
+                y++;
+            }
+        } else {
+            result[i] = new_data;
+            i++;
+        };
+        
     }
-
     return result;
 }
