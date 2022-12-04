@@ -10,36 +10,9 @@
 
     onMount(async () => {
         if (!browser) return;
-        // const response = await fetch('/mapa/nehody');
-        // const data = await response.json();
-        // console.log(data);
-        // const cfg = {
-        //     radius: 10,
-        //     maxOpacity: 0.8,
-        //     scaleRadius: false,
-        //     useLocalExtrema: true,
-        //     latField: 'lat',
-        //     lngField: 'lng',
-        //     valueField: 'count',
-        // };
-
-        // var hl = new HeatmapOverlay(cfg);
-        // hl.addTo(map);
-        // hl.setData(data);
 
         let center = [48.72, 21.26];
         let map = create_map(L, mapElement, center);
-
-        async function get_places() {
-            let request = await fetch('/mapa/byty');
-            let places = await request.json();
-            console.log(places);
-        }
-
-        async function update_features() {
-            const response = await fetch('/mapa/veci');
-            const features = await response.json();
-        }
 
         var bussin = L.icon({
             iconUrl: '/Bus.svg',
@@ -59,6 +32,7 @@
             iconSize: [40, 40], // size of the icon
             iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
         });
+
 
         let markers = [];
 
@@ -86,10 +60,10 @@
         }
 
         var point;
-        map.on('click', async e => {
+        async function update_data(lat, lon) {
             let data = await (
                 await fetch(
-                    `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${e.latlng.lat}&lon=${e.latlng.lng}&accept-language=sk`
+                    `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&accept-language=sk`
                 )
             ).json();
 
@@ -99,10 +73,7 @@
             if (point) {
                 point.remove();
             }
-            point = L.marker(e.latlng).addTo(map);
-
-            let lat = e.latlng.lat;
-            let lon = e.latlng.lng;
+            point = L.marker([lat, lon]).addTo(map);
 
             let veci = await features(lat, lon);
             console.log(veci);
@@ -175,8 +146,25 @@
                     })(),
                 ],
             };
-            update_isoch(e.latlng.lat, e.latlng.lng);
+            update_isoch(lat, lon);
+        }
+
+        map.on('click', async e => {
         });
+
+        async function get_places() {
+            let request = await fetch('/mapa/byty');
+            let places = await request.json();
+            let byty = places.byty;
+            byty.forEach(i => {
+                let marker = L.marker([i.lat, i.lng]).addTo(map);
+                marker.on('click', async (e) => {
+                    await update_data(e.latlng.lat, e.latlng.lng);
+                });
+            });
+        }
+
+        get_places();
     });
 
     onDestroy(async () => {
