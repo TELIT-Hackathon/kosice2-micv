@@ -33,7 +33,6 @@
             iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
         });
 
-
         let markers = [];
 
         let izoch;
@@ -65,9 +64,9 @@
                     `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&accept-language=sk`
                 )
             ).json();
-            map.flyTo(e.latlng,15, {
+            map.flyTo([lat, lon], 15, {
                 animate: true,
-                duration: 0.5
+                duration: 0.5,
             });
             let name = data.display_name;
             let [first, ...second] = name.split('-');
@@ -189,8 +188,7 @@
             update_isoch(lat, lon);
         }
 
-        map.on('click', async e => {
-        });
+        map.on('click', async e => {});
 
         async function get_places() {
             let request = await fetch('/mapa/byty');
@@ -198,7 +196,7 @@
             let byty = places.byty;
             byty.forEach(i => {
                 let marker = L.marker([i.lat, i.lng]).addTo(map);
-                marker.on('click', async (e) => {
+                marker.on('click', async e => {
                     await update_data(e.latlng.lat, e.latlng.lng);
                 });
             });
