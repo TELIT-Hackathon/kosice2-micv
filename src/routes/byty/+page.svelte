@@ -4,23 +4,46 @@
 
     let data = [];
 
-    let sortBy = "price";
+    let sortBy = 'price';
     let reverse = false;
-    
+
+    function resort() {
+        console.log(sortBy, reverse);
+        data = data.sort((a, b) =>
+            sortBy == 'price'
+                ? reverse
+                    ? b.cena - a.cena
+                    : a.cena - b.cena
+                : reverse
+                ? (b.ulica > a.ulica) - (a.ulica > b.ulica)
+                : (a.ulica > b.ulica) - (b.ulica > a.ulica)
+        );
+    }
+
     onMount(async function () {
         const request = await fetch('/mapa/byty');
 
         let d = await request.json();
-        data = d.byty.sort((a, b) => (a.cena - b.cena))
-        console.log(data);
+        data = d.byty.sort((a, b) => a.cena - b.cena);
+        resort();
     });
 </script>
 
 <div class="byty">
+    <form>
+        <select bind:value={sortBy} on:change={resort}>
+            <option value="price">Podľa ceny</option>
+            <option value="alpha">Podľa abecedy</option>
+        </select>
+        <select bind:value={reverse} on:change={resort}>
+            <option value={false}>Vzostupne</option>
+            <option value={true}>Zostupne</option>
+        </select>
+    </form>
     {#each data as byt}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="byt" on:click={() => goto('/mapa?id=' + byt.id)}>
-            <img src="/byty/{(byt.id % 5) + 1}.jpg" alt="byt" />
+            <img src="/byty/{(byt.id % 8) + 1}.jpg" alt="byt" />
             <div class="info">
                 <div>{byt.ulica} - {byt.druh}</div>
                 <div>{byt.cena}€ za {byt.plocha}m²</div>
