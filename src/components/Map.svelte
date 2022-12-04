@@ -352,16 +352,6 @@
     </div>
 </div>
 
-<svelte:head>
-    <script
-        src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-        crossorigin=""
-    ></script>
-    <script src="/heatmap.js"></script>
-    <script src="/leaflet-heatmap.js"></script>
-</svelte:head>
-
 <style lang="scss">
     @import '../Settings.scss';
     @import 'leaflet/dist/leaflet.css';
