@@ -112,16 +112,27 @@
             }
 
             veci.zakladne_skoly.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skola}).addTo(map));
+                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skola})
+                .addTo(map)
+                .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)  
+                    );
             });
             veci.stredne_skoly.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skola}).addTo(map));
+                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skola})
+                .addTo(map)
+                .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)  
+                    );
             });
             veci.materske_skoly.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skolka}).addTo(map));
+                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skolka}).addTo(map)
+                .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)  
+                                );
             });
             veci.zastavky.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: bussin}).addTo(map));
+                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: bussin})
+                .addTo(map)
+                .bindPopup(`<h3> ${i.properties.zastavka_nazov}</h3> Zastávka`)  
+                );
             });
 
             let d_zs = node_distance(lat, lon, veci.zakladne_skoly[0]);
