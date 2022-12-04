@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "95 000 €",
@@ -10,6 +11,7 @@
         "lng": 21.26399
     },
     {
+        "id": 2,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "97 999 €",
@@ -20,6 +22,7 @@
         "lng": 21.27075
     },
     {
+        "id": 3,
         "druh": "1 izbový byt",
         "stav": "Čiastočná rekonštrukcia",
         "cena": "98 500 €",
@@ -30,6 +33,7 @@
         "lng": 21.26953
     },
     {
+        "id": 4,
         "druh": "1 izbový byt",
         "stav": "Čiastočná rekonštrukcia",
         "cena": "98 500 €",
@@ -40,6 +44,7 @@
         "lng": 21.26399
     },
     {
+        "id": 5,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "79 990 €",
@@ -50,6 +55,7 @@
         "lng": 21.22725
     },
     {
+        "id": 6,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "89 000 €",
@@ -60,6 +66,7 @@
         "lng": 21.24006
     },
     {
+        "id": 7,
         "druh": "Garsónka",
         "stav": "Kompletná rekonštrukcia",
         "cena": "82 990 €",
@@ -70,6 +77,7 @@
         "lng": 21.23536
     },
     {
+        "id": 8,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "83 000 €",
@@ -80,6 +88,7 @@
         "lng": 21.227249
     },
     {
+        "id": 9,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "89 000 €",
@@ -90,6 +99,7 @@
         "lng": 21.240061
     },
     {
+        "id": 10,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "90 990 €",
@@ -100,6 +110,7 @@
         "lng": 21.235241
     },
     {
+        "id": 11,
         "druh": "1 izbový byt",
         "stav": "Novostavba",
         "cena": "77 200 €",
@@ -110,6 +121,7 @@
         "lng": 21.2578294
     },
     {
+        "id": 12,
         "druh": "Garsónka",
         "stav": "Čiastočná rekonštrukcia",
         "cena": "85 000 €",
@@ -120,6 +132,7 @@
         "lng": 21.2789492
     },
     {
+        "id": 13,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "94 999 €",
@@ -130,6 +143,7 @@
         "lng": 21.217011
     },
     {
+        "id": 14,
         "druh": "1 izbový byt",
         "stav": "Novostavba",
         "cena": "99 000 €",
@@ -140,6 +154,7 @@
         "lng": 21.2108053
     },
     {
+        "id": 15,
         "druh": "1 izbový byt",
         "stav": "Pôvodný stav",
         "cena": "46 990 €",
@@ -150,6 +165,7 @@
         "lng": 21.1711852
     },
     {
+        "id": 16,
         "druh": "1 izbový byt",
         "stav": "Kompletná rekonštrukcia",
         "cena": "99 950 €",

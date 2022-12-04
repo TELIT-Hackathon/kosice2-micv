@@ -11,6 +11,7 @@
     let links = [
         { name: 'Domov', href: '/' },
         { name: 'Mapa', href: '/mapa' },
+        { name: 'Byty', href: '/byty' },
     ];
 </script>
 
