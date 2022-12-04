@@ -30,7 +30,11 @@
         let center = [48.72, 21.26];
         let map = create_map(L, mapElement, center);
 
-
+        async function get_places() {
+            let request = await fetch('/mapa/byty');
+            let places = await request.json();
+            console.log(places);
+        }
 
         async function update_features() {
             const response = await fetch('/mapa/veci');
@@ -38,19 +42,19 @@
         }
 
         var bussin = L.icon({
-            iconUrl: '/bussin.svg',
+            iconUrl: '/Bus.svg',
 
             iconSize: [40, 40], // size of the icon
             iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
         });
         var skola = L.icon({
-            iconUrl: '/skola.svg',
+            iconUrl: '/School.svg',
 
             iconSize: [40, 40], // size of the icon
             iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
         });
         var skolka = L.icon({
-            iconUrl: '/skolka.svg',
+            iconUrl: '/Child.svg',
 
             iconSize: [40, 40], // size of the icon
             iconAnchor: [20, 20], // point of the icon which will correspond to marker's location
@@ -129,7 +133,6 @@
             placeData = {
                 name1: first,
                 name2: second,
-                rating: 10,
                 properties: [
                     (async () => {
                         return {

@@ -6,7 +6,6 @@
     {#if data}
         <h1>{data.name1}</h1>
         <h3>{data.name2}</h3>
-        <p>Celkové hodnotenie: {data.rating} bodov</p>
         {#each data.properties as prop}
             {#await prop}
                 <div class="property">Načítavam...</div>
