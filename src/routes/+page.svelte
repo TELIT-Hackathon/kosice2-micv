@@ -10,6 +10,7 @@
                 <h1>Vybrať správne je kľučové</h1>
                 <div class="main-page-button">
                     <Button onClick={() => goto('/mapa')}>MAPA</Button>
+                    <Button onClick={() => goto('/byty')}>ZOZNAM</Button>
                 </div>
             </div>
         </div>
@@ -90,7 +91,11 @@
             }
 
             .main-page-button {
-                font-size: 1.8em;
+                font-size: 1.5em;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 0.8em;
             }
         }
     }

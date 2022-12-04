@@ -18,51 +18,67 @@
 
         var bussin = L.icon({
             iconUrl: '/bussin.svg',
-
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+
         var skola = L.icon({
             iconUrl: '/skola.svg',
-
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+
         var skolka = L.icon({
             iconUrl: '/skolka.svg',
-
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+
         var spital = L.icon({
             iconUrl: '/spital.svg',
-
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+
         var dom = L.icon({
             iconUrl: '/dom.svg',
-
             iconSize: [52, 52],
             iconAnchor: [26, 26],
             className: 'dom',
         });
+
         var pes = L.icon({
             iconUrl: '/pes.svg',
-
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+
         var velky_dom = L.icon({
             iconUrl: '/dom.svg',
-
             iconSize: [52, 52],
             iconAnchor: [26, 26],
         });
 
         let markers = [];
 
-        let izoch;
+        let isoch;
+
+        async function update_isoch(id) {
+            const response = await fetch('/mapa/byty/isochrone', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: id }),
+            });
+            const data = await response.json();
+            if (isoch) { isoch.remove(); }
+            console.log(data);
+            isoch = L.polygon(data.isochrone).addTo(map);
+        }
+
+        /*
         async function update_isoch(lat, lon) {
             const response = await fetch('/mapa/isochrone', {
                 method: 'POST',
@@ -84,7 +100,10 @@
             console.log(data);
             izoch = L.polygon(data.outline).addTo(map);
         }
+        */
+
         var point;
+
         async function update_data(lat, lon, extra_data) {
             let data = await (
                 await fetch(
@@ -284,7 +303,8 @@
                     })(),
                 ],
             };
-            update_isoch(lat, lon);
+
+            update_isoch(extra_data.id);
         }
 
         async function get_places() {
@@ -297,7 +317,7 @@
                     await update_data(e.latlng.lat, e.latlng.lng, i);
                 });
             });
-            
+
             if (id != '') {
                 for (let i = 0; i < byty.length; i++) {
                     if (byty[i].id == id) {
