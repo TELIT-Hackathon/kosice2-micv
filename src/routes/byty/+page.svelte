@@ -3,12 +3,15 @@
     import { onMount } from 'svelte';
 
     let data = [];
+
+    let sortBy = "price";
+    let reverse = false;
     
     onMount(async function () {
         const request = await fetch('/mapa/byty');
 
         let d = await request.json();
-        data = d.byty
+        data = d.byty.sort((a, b) => (a.cena - b.cena))
         console.log(data);
     });
 </script>
