@@ -2,14 +2,16 @@ import { type RequestHandler, json } from '@sveltejs/kit';
 import { readFileSync } from 'fs';
 
 export const POST: RequestHandler = async ({ request }) => {
-    const data = await request.json();
+    // const data = await request.json();
 
-    const datasets: any = {};
-    for (let i = 0; i < data.datasets.length; i++) {
-        datasets[data.datasets[i].name] = getSortedData(data.datasets[i].name, data.datasets[i].count, { lat: data.center.lat, lng: data.center.lng });
-    }
-
-    return json({ datasets: datasets });
+    // return json({ 
+    //     byty: getSortedData(data.count, { lat: data.center.lat, lng: data.center.lng })
+    //  });
+    
+    const file = readFileSync('static/data/lacne_byty.json').toString();
+    return json({
+        byty: JSON.parse(file)
+    });
 };
 
 const earthRad = 6378100;
@@ -21,27 +23,22 @@ function getDistanceOnSphereSquared(latA: number, lngA: number, latB: number, ln
     return (dx * dx + dy * dy);
 }
 
-function getSortedData(filePath: string, count: number, coords: { lat: number, lng: number }): any[] {
-    const file = readFileSync(`static/data/${filePath}.geojson`).toString();
-    const featureData = JSON.parse(file).features;
+function getSortedData(count: number, coords: { lat: number, lng: number }): any[] {
+    const file = readFileSync('static/data/lacne_byty.json').toString();
+    const featureData = JSON.parse(file);
 
     const sortedDistances = new Array<{ distance: number, index: number }>(featureData.length);
 
     count = Math.min(count, featureData.length);
 
     for (let i = 0; i < featureData.length; i++) {
-        if (featureData[i]?.geometry?.coordinates) {
-            sortedDistances[i] = {
-                // Geodata lat lng is flipped ...
-                distance: getDistanceOnSphereSquared(featureData[i].geometry.coordinates[1], featureData[i].geometry.coordinates[0], coords.lat, coords.lng),
-                index: i
-            };
-        } else {
-            sortedDistances[i] = {
-                distance: Number.POSITIVE_INFINITY,
-                index: i
-            };
-        }
+        sortedDistances[i] = {
+            distance:
+                featureData[i].lat && featureData[i].lng ?
+                    getDistanceOnSphereSquared(featureData[i].lat, featureData[i].lng, coords.lat, coords.lng)
+                    : Number.POSITIVE_INFINITY,
+            index: i
+        };
     }
 
     sortedDistances.sort((a, b) => { if (a.distance < b.distance) return -1; return 1; });

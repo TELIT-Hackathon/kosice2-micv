@@ -31,18 +31,15 @@ function getSortedData(filePath: string, count: number, coords: { lat: number, l
     count = Math.min(count, featureData.length);
 
     for (let i = 0; i < featureData.length; i++) {
-        if (featureData[i]?.geometry?.coordinates) {
-            sortedDistances[i] = {
-                // Geodata lat lng is flipped ...
-                distance: getDistanceOnSphereSquared(featureData[i].geometry.coordinates[1], featureData[i].geometry.coordinates[0], coords.lat, coords.lng),
-                index: i
-            };
-        } else {
-            sortedDistances[i] = {
-                distance: Number.POSITIVE_INFINITY,
-                index: i
-            };
-        }
+        sortedDistances[i] = {
+            // Geodata lat lng is flipped ...
+            distance:
+                featureData[i]?.geometry?.coordinates ?
+                    getDistanceOnSphereSquared(featureData[i].geometry.coordinates[1], featureData[i].geometry.coordinates[0], coords.lat, coords.lng)
+                    : Number.POSITIVE_INFINITY,
+
+            index: i
+        };
     }
 
     sortedDistances.sort((a, b) => { if (a.distance < b.distance) return -1; return 1; });
