@@ -1,102 +1,162 @@
 [
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "95 000 €"
-		"Úžit. plocha": "39 m2"
-		"Ulica": "Aténska"
-		"Mestská časť": "Košice I - Sídlisko Ťahanovce"
-		"Latitude": 48.758840
-		"Longtitude": 21.263990
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "97 999 €"
-		"Úžit. plocha": "39 m2"
-		"Ulica": "Havanská"
-		"Mestská časť": "Košice I - Sídlisko Ťahanovce"
-		"Latitude": 48.759620
-		"Longtitude": 21.270750
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Čiastočná rekonštrukcia"
-		"Cena": "98 500 €"
-		"Úžit. plocha": "39 m2"
-		"Ulica": "Bukureštská"
-		"Mestská časť": "Košice I - Sídlisko Ťahanovce"
-		"Latitude": 48.759010
-		"Longtitude": 21.269530
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Čiastočná rekonštrukcia"
-		"Cena": "98 500 €"
-		"Úžit. plocha": "40 m2"
-		"Ulica": "Bukureštská"
-		"Mestská časť": "Košice I - Sídlisko Ťahanovce"
-		"Latitude": 48.758840
-		"Longtitude": 21.263990
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "79 990 €"
-		"Úžit. plocha": "23 m2"
-		"Ulica": "Popradská"
-		"Mestská časť": "Košice II - Západ"
-		"Latitude": 48.712170
-		"Longtitude": 21.227250
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "89 000 €"
-		"Úžit. plocha": "27 m2"
-		"Ulica": "Popradská"
-		"Mestská časť": "Košice II - Západ"
-		"Latitude": 48.718460
-		"Longtitude": 21.240060
-	}
-	{
-		"Druh": "Garsónka"
-		"Stav": "Kompletná rekonštrukcia"
-		"Cena": "82 990 €"
-		"Úžit. plocha": "22 m2"
-		"Ulica": "Trieda SNP 287/76"
-		"Mestská časť": "Košice II - Západ"
-		"Latitude": 48.710590
-		"Longtitude": 21.235360
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "83 000 €"
-		"Úžit. plocha": "28 m2"
-		"Ulica": "Popradská"
-		"Mestská časť": "Košice II - Západ"
-		"Latitude": 48.712170
-		"Longtitude": 21.227249
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "89 000 €"
-		"Úžit. plocha": "27 m2"
-		"Ulica": "Považská"
-		"Mestská časť": "Košice II - Západ"
-		"Latitude": 48.718460
-		"Longtitude": 21.240061
-	}
-	{
-		"Druh": "1 izbový byt"
-		"Stav": "Pôvodný stav"
-		"Cena": "90 990 €"
-		"Úžit. plocha": "27,51 m2"
-		"Ulica": "Považská"
-		"Mestská časť": "Košice II - Západ"
-		"Latitude": 48.707729
-		"Longtitude": 21.235241
-	}
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "95 000 €",
+        "Úžit. plocha": "39 m2",
+        "Ulica": "Aténska",
+        "Mestská časť": "Košice I - Sídlisko Ťahanovce",
+        "Latitude": 48.75884,
+        "Longtitude": 21.26399
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "97 999 €",
+        "Úžit. plocha": "39 m2",
+        "Ulica": "Havanská",
+        "Mestská časť": "Košice I - Sídlisko Ťahanovce",
+        "Latitude": 48.75962,
+        "Longtitude": 21.27075
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Čiastočná rekonštrukcia",
+        "Cena": "98 500 €",
+        "Úžit. plocha": "39 m2",
+        "Ulica": "Bukureštská",
+        "Mestská časť": "Košice I - Sídlisko Ťahanovce",
+        "Latitude": 48.75901,
+        "Longtitude": 21.26953
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Čiastočná rekonštrukcia",
+        "Cena": "98 500 €",
+        "Úžit. plocha": "40 m2",
+        "Ulica": "Bukureštská",
+        "Mestská časť": "Košice I - Sídlisko Ťahanovce",
+        "Latitude": 48.75884,
+        "Longtitude": 21.26399
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "79 990 €",
+        "Úžit. plocha": "23 m2",
+        "Ulica": "Popradská",
+        "Mestská časť": "Košice II - Západ",
+        "Latitude": 48.71217,
+        "Longtitude": 21.22725
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "89 000 €",
+        "Úžit. plocha": "27 m2",
+        "Ulica": "Popradská",
+        "Mestská časť": "Košice II - Západ",
+        "Latitude": 48.71846,
+        "Longtitude": 21.24006
+    },
+    {
+        "Druh": "Garsónka",
+        "Stav": "Kompletná rekonštrukcia",
+        "Cena": "82 990 €",
+        "Úžit. plocha": "22 m2",
+        "Ulica": "Trieda SNP 287/76",
+        "Mestská časť": "Košice II - Západ",
+        "Latitude": 48.71059,
+        "Longtitude": 21.23536
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "83 000 €",
+        "Úžit. plocha": "28 m2",
+        "Ulica": "Popradská",
+        "Mestská časť": "Košice II - Západ",
+        "Latitude": 48.71217,
+        "Longtitude": 21.227249
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "89 000 €",
+        "Úžit. plocha": "27 m2",
+        "Ulica": "Považská",
+        "Mestská časť": "Košice II - Západ",
+        "Latitude": 48.71846,
+        "Longtitude": 21.240061
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "90 990 €",
+        "Úžit. plocha": "27,51 m2",
+        "Ulica": "Považská",
+        "Mestská časť": "Košice II - Západ",
+        "Latitude": 48.707729,
+        "Longtitude": 21.235241
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Novostavba",
+        "Cena": "77 200 €",
+        "Úžit. plocha": "33 m2",
+        "Ulica": "-",
+        "Mestská časť": "Košice I - Staré Mesto",
+        "Latitude": 48.7206148,
+        "Longtitude": 21.2578294
+    },
+    {
+        "Druh": "Garsónka",
+        "Stav": "Čiastočná rekonštrukcia",
+        "Cena": "85 000 €",
+        "Úžit. plocha": "24 m2",
+        "Ulica": "Adlerova",
+        "Mestská časť": "Košice III - Dargovských Hrdinov",
+        "Latitude": 48.744975,
+        "Longtitude": 21.2789492
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "94 999 €",
+        "Úžit. plocha": "36 m2",
+        "Ulica": "Titogradská",
+        "Mestská časť": "Košice II - Sídlisko KVP",
+        "Latitude": 48.7188772,
+        "Longtitude": 21.217011
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Novostavba",
+        "Cena": "99 000 €",
+        "Úžit. plocha": "23,99 m2",
+        "Ulica": "Klimkovičova",
+        "Mestská časť": "Košice II - Sídlisko KVP",
+        "Latitude": 48.7126933,
+        "Longtitude": 21.2108053
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Pôvodný stav",
+        "Cena": "46 990 €",
+        "Úžit. plocha": "29 m2",
+        "Ulica": "Námestie Oceliarov",
+        "Mestská časť": "Košice II - Šaca",
+        "Latitude": 48.6355216,
+        "Longtitude": 21.1711852
+    },
+    {
+        "Druh": "1 izbový byt",
+        "Stav": "Kompletná rekonštrukcia",
+        "Cena": "99 950 €",
+        "Úžit. plocha": "35 m2",
+        "Ulica": "Učňovská",
+        "Mestská časť": "Košice II - Šaca",
+        "Latitude": 48.6305567,
+        "Longtitude": 21.1811631
+    }
 ]

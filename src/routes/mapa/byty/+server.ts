@@ -12,7 +12,6 @@ export const POST: RequestHandler = async ({ request }) => {
     return json({ datasets: datasets });
 };
 
-
 const earthRad = 6378100;
 const degToRad = (Math.PI / 180);
 
