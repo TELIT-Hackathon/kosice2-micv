@@ -8,6 +8,8 @@
     let map;
     let placeData = null;
 
+    export let id;
+
     onMount(async () => {
         if (!browser) return;
 
@@ -289,6 +291,15 @@
                     await update_data(e.latlng.lat, e.latlng.lng, i);
                 });
             });
+            
+            if (id != '') {
+                for (let i = 0; i < byty.length; i++) {
+                    if (byty[i].id == id) {
+                        await update_data(byty[i].lat, byty[i].lng, byty[i]);
+                        break;
+                    }
+                }
+            }
         }
 
         get_places();
@@ -350,7 +361,8 @@
                 opacity: 75%;
                 filter: brightness(80%);
                 padding: 9px !important;
-                transition: padding 0.2s linear, opacity 0.2s linear, filter 0.2s linear !important;
+                transition: padding 0.2s linear, opacity 0.2s linear,
+                    filter 0.2s linear !important;
             }
 
             .dom:hover {
