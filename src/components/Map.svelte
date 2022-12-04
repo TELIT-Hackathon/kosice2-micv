@@ -51,6 +51,12 @@
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+        var velky_dom = L.icon({
+            iconUrl: '/dom.svg',
+
+            iconSize: [52, 52],
+            iconAnchor: [26, 26],
+        });
 
         let markers = [];
 
@@ -93,7 +99,7 @@
             if (point) {
                 point.remove();
             }
-            point = L.marker([lat, lon]).addTo(map);
+            point = L.marker([lat, lon], { icon: velky_dom }).addTo(map);
 
             let veci = await features(lat, lon);
             console.log(veci);
@@ -350,7 +356,8 @@
                 opacity: 75%;
                 filter: brightness(80%);
                 padding: 9px !important;
-                transition: padding 0.2s linear, opacity 0.2s linear, filter 0.2s linear !important;
+                transition: padding 0.2s linear, opacity 0.2s linear,
+                    filter 0.2s linear !important;
             }
 
             .dom:hover {
