@@ -1,5 +1,6 @@
 <script lang="ts">
     import Button from '$/components/Button.svelte';
+    import { goto } from '$app/navigation';
 </script>
 
 <div class="full-page">
@@ -8,11 +9,7 @@
             <div class="top-content">
                 <h1>Vybrať správne je kľučové</h1>
                 <div class="main-page-button">
-                    <Button
-                        onClick={() => {
-                            svelte: window.location.href = '/mapa';
-                        }}>MAPA</Button
-                    >
+                    <Button onClick={() => goto('/mapa')}>MAPA</Button>
                 </div>
             </div>
         </div>
@@ -81,7 +78,6 @@
             align-items: center;
             flex-direction: column;
             gap: 2em;
-
 
             h1 {
                 font-size: 3em;

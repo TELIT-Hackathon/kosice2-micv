@@ -58,7 +58,6 @@
             console.log(data);
             izoch = L.polygon(data.outline).addTo(map);
         }
-
         var point;
         async function update_data(lat, lon) {
             let data = await (
@@ -66,7 +65,10 @@
                     `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&accept-language=sk`
                 )
             ).json();
-
+            map.flyTo(e.latlng,15, {
+                animate: true,
+                duration: 0.5
+            });
             let name = data.display_name;
             let [first, ...second] = name.split('-');
             second = second.join('-');
@@ -83,26 +85,45 @@
             }
 
             veci.zakladne_skoly.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skola})
-                .addTo(map)
-                .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)  
-                    );
+                markers.push(
+                    L.marker(
+                        [i.geometry.coordinates[1], i.geometry.coordinates[0]],
+                        { icon: skola }
+                    )
+                        .addTo(map)
+                        .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)
+                );
             });
             veci.stredne_skoly.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skola})
-                .addTo(map)
-                .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)  
-                    );
+                markers.push(
+                    L.marker(
+                        [i.geometry.coordinates[1], i.geometry.coordinates[0]],
+                        { icon: skola }
+                    )
+                        .addTo(map)
+                        .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)
+                );
             });
             veci.materske_skoly.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: skolka}).addTo(map)
-                .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)  
-                                );
+                markers.push(
+                    L.marker(
+                        [i.geometry.coordinates[1], i.geometry.coordinates[0]],
+                        { icon: skolka }
+                    )
+                        .addTo(map)
+                        .bindPopup(`<h3>${i.properties.organizacia_nazov}</h3>`)
+                );
             });
             veci.zastavky.forEach(i => {
-                markers.push(L.marker([i.geometry.coordinates[1], i.geometry.coordinates[0]], {icon: bussin})
-                .addTo(map)
-                .bindPopup(`<h3> ${i.properties.zastavka_nazov}</h3> Zastávka`)  
+                markers.push(
+                    L.marker(
+                        [i.geometry.coordinates[1], i.geometry.coordinates[0]],
+                        { icon: bussin }
+                    )
+                        .addTo(map)
+                        .bindPopup(
+                            `<h3> ${i.properties.zastavka_nazov}</h3> Zastávka`
+                        )
                 );
             });
 
@@ -110,7 +131,6 @@
             let d_ss = node_distance(lat, lon, veci.stredne_skoly[0]);
             let d_ms = node_distance(lat, lon, veci.materske_skoly[0]);
             let d_z = node_distance(lat, lon, veci.zastavky[0]);
-            
 
             placeData = {
                 name1: first,
@@ -118,30 +138,50 @@
                 properties: [
                     (async () => {
                         return {
-                            key: "Najbližšia základná škola",
+                            key: 'Najbližšia základná škola',
                             value: `${d_zs}m - ${veci.zakladne_skoly[0].properties.organizacia_nazov}`,
-                            color: (d_zs < 700 ? 'green' : d_zs < 1000 ? 'yellow' : 'red')
+                            color:
+                                d_zs < 700
+                                    ? 'green'
+                                    : d_zs < 1000
+                                    ? 'yellow'
+                                    : 'red',
                         };
                     })(),
                     (async () => {
                         return {
-                            key: "Najbližšia stredná škola",
+                            key: 'Najbližšia stredná škola',
                             value: `${d_ss}m - ${veci.stredne_skoly[0].properties.organizacia_nazov}`,
-                            color: (d_ss < 700 ? 'green' : d_ss < 1000 ? 'yellow' : 'red')
+                            color:
+                                d_ss < 700
+                                    ? 'green'
+                                    : d_ss < 1000
+                                    ? 'yellow'
+                                    : 'red',
                         };
                     })(),
                     (async () => {
                         return {
-                            key: "Najbližšia materkská škola",
+                            key: 'Najbližšia materkská škola',
                             value: `${d_ms}m - ${veci.materske_skoly[0].properties.organizacia_nazov}`,
-                            color: (d_ms < 700 ? 'green' : d_ms < 1000 ? 'yellow' : 'red')
+                            color:
+                                d_ms < 700
+                                    ? 'green'
+                                    : d_ms < 1000
+                                    ? 'yellow'
+                                    : 'red',
                         };
                     })(),
                     (async () => {
                         return {
-                            key: "Najbližšia zastávka MHD",
+                            key: 'Najbližšia zastávka MHD',
                             value: `${d_z}m - ${veci.zastavky[0].properties.zastavka_nazov}`,
-                            color: (d_z < 200 ? 'green' : d_z < 500 ? 'yellow' : 'red')
+                            color:
+                                d_z < 200
+                                    ? 'green'
+                                    : d_z < 500
+                                    ? 'yellow'
+                                    : 'red',
                         };
                     })(),
                 ],
@@ -195,6 +235,12 @@
 <style lang="scss">
     @import '../Settings.scss';
     @import 'leaflet/dist/leaflet.css';
+
+    @media screen and (min-width: 600px) {
+        .map {
+            height: calc(100vh - $header-height) !important;
+        }
+    }
 
     .map div:not(.sidebar, .sidebar *),
     .map {
