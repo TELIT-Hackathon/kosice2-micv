@@ -53,6 +53,12 @@
             iconSize: [40, 40],
             iconAnchor: [20, 20],
         });
+        var velky_dom = L.icon({
+            iconUrl: '/dom.svg',
+
+            iconSize: [52, 52],
+            iconAnchor: [26, 26],
+        });
 
         let markers = [];
 
@@ -95,7 +101,7 @@
             if (point) {
                 point.remove();
             }
-            point = L.marker([lat, lon]).addTo(map);
+            point = L.marker([lat, lon], { icon: velky_dom }).addTo(map);
 
             let veci = await features(lat, lon);
             console.log(veci);
