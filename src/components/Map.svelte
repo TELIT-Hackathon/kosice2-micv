@@ -21,6 +21,7 @@
 
         let center = [48.72, 21.26];
         let map = create_map(L, mapElement, center);
+
         // const cfg = {
         //     radius: 10,
         //     maxOpacity: 0.8,
@@ -43,7 +44,12 @@
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ lat: lat, lon: lon, time: 600 }),
+                body: JSON.stringify({
+                    lat: lat,
+                    lon: lon,
+                    time: 600,
+                    transportation: 'driving',
+                }),
             });
             const data = await response.json();
             if (izoch) {
@@ -103,10 +109,8 @@
         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
         crossorigin=""
     ></script>
-    <script src="/heatmap.js">
-    </script>
-    <script src="/leaflet-heatmap.js">
-    </script>
+    <script src="/heatmap.js"></script>
+    <script src="/leaflet-heatmap.js"></script>
 </svelte:head>
 
 <style lang="scss">

@@ -114,7 +114,7 @@ export const POST: RequestHandler = async ({ request }) => {
                     id: 'first_location',
                     coords: coords,
                     transportation: {
-                        type: 'driving'
+                        type: reqData.transportation
                     },
                     departure_time: '2022-10-01T09:00:00Z',
                     travel_time: reqData.time

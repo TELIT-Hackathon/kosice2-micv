@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte';
     onMount(async () => {
-        const response = await fetch('/mapa/check_within_radius', {
+        const response = await fetch('/mapa/geodata', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -10,7 +10,7 @@
             body: JSON.stringify({
                 radius: 800,
                 center: { lat: 48.705878, lng: 21.264437 },
-                data: 'zakladne_skoly',
+                datasets: ['zakladne_skoly', ''],
             }),
         });
         const data = await response.json();
