@@ -5,7 +5,8 @@
 <div class="info-pane">
     {#if data}
         <h1>{data.name1}</h1>
-        <h3>{data.name2}</h3>
+        <h2>{data.name2}</h2>
+        <p>{data.name3}</p>
         {#each data.properties as prop}
             {#await prop}
                 <div class="property">Načítavam...</div>
@@ -41,7 +42,7 @@
         line-height: 1em;
         padding: 0 0 1em 0;
     }
-    .info-pane h3 {
+    .info-pane h2 {
         line-height: 1em;
         padding: 0 0 0.5em 0;
     }
