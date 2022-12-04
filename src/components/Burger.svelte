@@ -25,6 +25,7 @@
 
 <div class="burger-menu" class:open>
     <div class="burger-menu-container">
+        <img src="/kosice_logo.png" alt="logo" class="logo" />
         <div class="burger-links">
             {#each links as link}
                 <NavLink
@@ -72,6 +73,8 @@
         height: 100vh;
         position: absolute;
 
+        font-size: 3em;
+        
         top: 0;
         left: calc(-1 * $width);
         z-index: 12000;
@@ -83,6 +86,12 @@
             transform: translateX($width);
         }
     }
+    
+    .logo {
+        padding: 0.6em;
+        width: 100%;
+        height: auto;
+    }
 
     :global {
         .burger-menu-container {
@@ -93,7 +102,6 @@
                 flex-direction: column;
 
                 .burger-link {
-                    font-size: 2em;
                     width: fit-content;
 
                     color: $clr-light;

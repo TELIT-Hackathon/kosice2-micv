@@ -9,8 +9,8 @@
     export let data: LayoutData;
 
     let links = [
-        { name: 'domov', href: '/' },
-        { name: 'mapa', href: '/mapa' },
+        { name: 'Domov', href: '/' },
+        { name: 'Mapa', href: '/mapa' },
     ];
 </script>
 
@@ -51,6 +51,7 @@
         background-color: $clr-light;
         color: $clr-dark;
         font-family: $ff-primary;
+        font-size: max(min(2.8vw, 15px), 12px);
     }
 
     #app {

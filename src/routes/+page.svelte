@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Button from '$/components/Button.svelte';
 </script>
 
 <div class="full-page">
@@ -6,20 +7,29 @@
         <div class="overlay">
             <div class="top-content">
                 <h1>Vybrať správne je kľučové</h1>
+                <div class="main-page-button">
+                    <Button
+                        onClick={() => {
+                            svelte: window.location.href = '/mapa';
+                        }}>MAPA</Button
+                    >
+                </div>
             </div>
         </div>
     </div>
 
     <div class="main-page-bottom">
-        <p>
-            Pomáhamé vám s výberom <b>lacného a dostupného ubytovania</b> na
-            základe
-            <b>možností dopravy, vzdialenosti škôl, lekární, ambulancií</b>.
-        </p>
-        <p>
-            Používame voľne dostupné dáta a spracuvávame ich do formy prehľadnej
-            mapy.
-        </p>
+        <div class="bottom-text">
+            <p>
+                Pomáhamé vám s výberom <b>lacného a dostupného ubytovania</b> na
+                základe
+                <b>možností dopravy, vzdialenosti škôl, lekární, ambulancií</b>.
+            </p>
+            <p>
+                Používame voľne dostupné dáta a spracuvávame ich do formy
+                prehľadnej mapy.
+            </p>
+        </div>
     </div>
 </div>
 
@@ -35,8 +45,8 @@
     }
 
     .main-page-top {
-        flex-grow: 1;
-        
+        flex-grow: 1.6;
+
         background-image: url('/kosice.jpg');
         background-position: center;
         background-size: cover;
@@ -49,8 +59,9 @@
         .overlay {
             width: 100%;
             height: 100%;
-            background-color: #00000004;
-            
+            background-color: #00000084;
+            backdrop-filter: blur(3px);
+
             flex-grow: 1;
 
             display: flex;
@@ -69,17 +80,37 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            gap: 2em;
+
 
             h1 {
                 font-size: 3em;
                 padding: 0.2em 0.4em;
-                background-color: $clr-light;
+                margin: 0 1.2em;
+                background-color: #ffffffd0;
+
                 border-radius: 0.05em;
+                text-align: center;
+            }
+
+            .main-page-button {
+                font-size: 1.8em;
             }
         }
     }
 
     .main-page-bottom {
         flex-grow: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .bottom-text {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 1em;
+            text-align: center;
+        }
     }
 </style>

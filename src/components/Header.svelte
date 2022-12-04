@@ -31,6 +31,8 @@
         display: flex;
         justify-content: center;
         z-index: 20000;
+
+        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.25);
     }
 
     .header-container {
