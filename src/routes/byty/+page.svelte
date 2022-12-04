@@ -1,24 +1,29 @@
-<script lang="ts">
+<script>
     import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
 
-    let request = fetch('/mapa/byty');
+    let data = [];
+    
+    onMount(async function () {
+        const request = await fetch('/mapa/byty');
+
+        let d = await request.json();
+        data = d.byty
+        console.log(data);
+    });
 </script>
 
 <div class="byty">
-    {#await request then data}
-        {#await data.json() then jsonData}
-            {#each jsonData.byty as byt}
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div class="byt" on:click={() => goto('/mapa?id=' + byt.id)}>
-                    <img src="/byty/{(byt.id % 5) + 1}.jpg" alt="byt" />
-                    <div class="info">
-                        <div>{byt.ulica} - {byt.druh}</div>
-                        <div>{byt.cena} za {byt.plocha}</div>
-                    </div>
-                </div>
-            {/each}
-        {/await}
-    {/await}
+    {#each data as byt}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div class="byt" on:click={() => goto('/mapa?id=' + byt.id)}>
+            <img src="/byty/{(byt.id % 5) + 1}.jpg" alt="byt" />
+            <div class="info">
+                <div>{byt.ulica} - {byt.druh}</div>
+                <div>{byt.cena}€ za {byt.plocha}m²</div>
+            </div>
+        </div>
+    {/each}
 </div>
 
 <style lang="scss">

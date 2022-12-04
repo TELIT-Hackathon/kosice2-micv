@@ -54,6 +54,7 @@
         margin: 1em 0.5em 1em 0.5em;
         border-radius: 1em;
         overflow: hidden;
+        box-shadow: 1em #00000080;
     }
 
     .red {

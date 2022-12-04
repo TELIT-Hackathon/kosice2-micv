@@ -57,6 +57,12 @@
             iconSize: [52, 52],
             iconAnchor: [26, 26],
         });
+        var apatieka = L.icon({
+            iconUrl: '/apatieka.svg',
+
+            iconSize: [40, 40],
+            iconAnchor: [20, 20],
+        });
 
         let markers = [];
 
@@ -164,7 +170,7 @@
                 markers.push(
                     L.marker(
                         [i.geometry.coordinates[1], i.geometry.coordinates[0]],
-                        { icon: spital }
+                        { icon: apatieka }
                     )
                         .addTo(map)
                         .bindPopup(`<h3>${i.properties.nazov}</h3>`)
@@ -193,7 +199,7 @@
 
             placeData = {
                 name1: `${extra_data.druh}, ${extra_data.ulica}`,
-                name2: `${extra_data.cena} - ${extra_data.plocha}`,
+                name2: `${extra_data.cena}€ - ${extra_data.plocha}m²`,
                 name3: second,
                 properties: [
                     (async () => {
