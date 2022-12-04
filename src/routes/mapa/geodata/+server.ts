@@ -13,7 +13,6 @@ export const POST: RequestHandler = async ({ request }) => {
     const filtered = [];
     const radius = data.radius;
 
-    // Nespravne rovnice matus!!!
     for (let i = 0; i < jsonData.features.length; i++) {
         const dx = (jsonData.features[i].properties.y - data.center.lat) * degToRad * earthRad;
         const dy = (Math.cos(jsonData.features[i].properties.y - data.center.lat) * (jsonData.features[i].properties.x - data.center.lng) * degToRad * earthRad);
