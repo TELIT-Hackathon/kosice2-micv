@@ -10,14 +10,11 @@
 
     onMount(async () => {
         if (!browser) return;
-        //const leaflet = await import('leaflet');
+        // const leaflet = await import('leaflet');
         // const hm = await import('leaflet-heatmap');
         // const response = await fetch('/mapa/nehody');
         // const data = await response.json();
         // console.log(data);
-
-        // const response = await fetch('/mapa/veci');
-        // const features = await response.json();
 
         let center = [48.72, 21.26];
         let map = create_map(L, mapElement, center);
@@ -34,6 +31,11 @@
         // var hl = new HeatmapOverlay(cfg);
         // hl.addTo(map);
         // hl.setData(data);
+
+        async function update_features() {
+            const response = await fetch('/mapa/veci');
+            const features = await response.json();
+        }
 
         let izoch;
         async function update_isoch(lat, lon) {
@@ -53,6 +55,26 @@
             izoch = L.polygon(data.outline).addTo(map);
         }
 
+        async function get_school_info(lat, lon) {
+            const response = await fetch('/mapa/find_nearest', {
+                method: 'POST',
+                headers: {
+                    Accept: 'aplication/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    n: 5,
+                    center: {lat: lat, lng: lon}, 
+                    data: 'zakladne_skoly'
+                })
+            });
+            const data = await response.json();
+            console.log(data);
+            return data[0].properties.organizacia_nazov;
+        }
+
+        function closestSchool() {}
+
         var point;
         map.on('click', async e => {
             let data = await (
@@ -68,14 +90,42 @@
                 point.remove();
             }
             point = L.marker(e.latlng).addTo(map);
+
+            let lat = e.latlng.lat;
+            let lon = e.latlng.lng;
+
             placeData = {
                 name1: first,
                 name2: second,
                 rating: 10,
                 properties: [
-                    { key: 'Umiestnenie', value: 'Výborné', color: 'green' },
-                    { key: 'Cena', value: 'Vpohode', color: 'yellow' },
-                    { key: 'Detské ihriská', value: 'Žiadne', color: 'red' },
+                    (async () => {
+                        return {
+                            key: 'Najbližšia škola',
+                            value: await get_school_info(lat, lon),
+                        };
+                    })(),
+                    (async () => {
+                        return {
+                            key: 'Umiestnenie',
+                            value: 'Výborné',
+                            color: 'green',
+                        };
+                    })(),
+                    (async () => {
+                        return {
+                            key: 'Cena',
+                            value: 'Vpohode',
+                            color: 'yellow',
+                        };
+                    })(),
+                    (async () => {
+                        return {
+                            key: 'Detské ihriská',
+                            value: 'Žiadne',
+                            color: 'red',
+                        };
+                    })(),
                 ],
             };
             update_isoch(e.latlng.lat, e.latlng.lng);

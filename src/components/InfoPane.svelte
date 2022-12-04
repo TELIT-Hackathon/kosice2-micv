@@ -8,14 +8,20 @@
         <h3>{data.name2}</h3>
         <p>Celkové hodnotenie: {data.rating} bodov</p>
         {#each data.properties as prop}
-            <div class="property {prop.color}">
-                <div class="prop_key">
-                    {prop.key}
+            {#await prop}
+                <div class="property">Načítavam...</div>
+            {:then value}
+                <div class="property {value.color}">
+                    <div class="prop_key">
+                        {value.key}
+                    </div>
+                    <div class="prop_value">
+                        {value.value}
+                    </div>
                 </div>
-                <div class="prop_value">
-                    {prop.value}
-                </div>
-            </div>
+            {:catch error}
+                Nastala chyba
+            {/await}
         {/each}
     {:else}
         <h1>Vyberte miesto</h1>
@@ -29,7 +35,7 @@
 <style lang="scss">
     @import '../Settings.scss';
     @import 'leaflet/dist/leaflet.css';
-    
+
     .info_pane {
         padding: 1em;
         margin: 0;
