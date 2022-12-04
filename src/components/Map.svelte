@@ -78,7 +78,6 @@
             console.log(data);
             izoch = L.polygon(data.outline).addTo(map);
         }
-
         var point;
         map.on('click', async e => {
             let data = await (
@@ -86,7 +85,10 @@
                     `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${e.latlng.lat}&lon=${e.latlng.lng}&accept-language=sk`
                 )
             ).json();
-
+            map.flyTo(e.latlng,15, {
+                animate: true,
+                duration: 0.5
+            });
             let name = data.display_name;
             let [first, ...second] = name.split('-');
             second = second.join('-');
