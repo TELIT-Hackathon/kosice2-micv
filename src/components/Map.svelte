@@ -8,6 +8,8 @@
     let map;
     let placeData = null;
 
+    export let id;
+
     onMount(async () => {
         if (!browser) return;
 
@@ -301,6 +303,15 @@
                     await update_data(e.latlng.lat, e.latlng.lng, i);
                 });
             });
+            
+            if (id != '') {
+                for (let i = 0; i < byty.length; i++) {
+                    if (byty[i].id == id) {
+                        await update_data(byty[i].lat, byty[i].lng, byty[i]);
+                        break;
+                    }
+                }
+            }
         }
 
         get_places();
