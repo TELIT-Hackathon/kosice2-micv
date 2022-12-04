@@ -56,6 +56,7 @@
         justify-content: center;
         margin: 1em 0.5em 1em 0.5em;
         border-radius: 1em;
+        overflow:hidden;
     }
 
     .red {
@@ -74,11 +75,16 @@
         width: 50%;
         text-align: center;
         padding: 0.75em 0.5em 0.75em 0.5em;
+        background-color: #00000010;
+        display: flex;
+        align-items: center;
     }
 
     .prop_value {
         width: 50%;
         text-align: center;
         padding: 0.75em 0.5em 0.75em 0.5em;
+        display: flex;
+        align-items: center;
     }
 </style>
