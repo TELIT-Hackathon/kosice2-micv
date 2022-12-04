@@ -4,7 +4,9 @@
 <div class="full-page">
     <div class="main-page-top">
         <div class="overlay">
-            <h1>Vybrať správne je kľučové</h1>
+            <div class="top-content">
+                <h1>Vybrať správne je kľučové</h1>
+            </div>
         </div>
     </div>
 
@@ -34,17 +36,46 @@
 
     .main-page-top {
         flex-grow: 1;
+        
+        background-image: url('/kosice.jpg');
+        background-position: center;
+        background-size: cover;
 
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url('/kosice.jpg');
-        background-position: center;
+        flex-direction: column;
 
-        h1 {
-            font-size: 3em;
-            padding: 0.5em;
-            background-color: $clr-light;
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background-color: #00000004;
+            
+            flex-grow: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .top-content {
+            width: 100%;
+            height: 100%;
+
+            flex-grow: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            h1 {
+                font-size: 3em;
+                padding: 0.2em 0.4em;
+                background-color: $clr-light;
+                border-radius: 0.05em;
+            }
         }
     }
 
