@@ -28,7 +28,7 @@ export async function features(lat, lon) {
         },
         body: JSON.stringify({
             center: { lat: lat, lng: lon },
-            datasets: [{ name: 'zakladne_skoly', count: 3 }, { name: 'stredne_skoly', count: 3 }, { name: 'materske_skoly', count: 2 }, { name: 'zastavky', count: 5 }]
+            datasets: [{ name: 'zakladne_skoly', count: 3 }, { name: 'stredne_skoly', count: 3 }, { name: 'materske_skoly', count: 2 }, { name: 'zastavky', count: 5 }, {name: 'lekarne', count: 3}, {name: 'psy', count: 3}, {name: 'ambulancie', count: 2}]
         })
     });
     const data = await response.json();
